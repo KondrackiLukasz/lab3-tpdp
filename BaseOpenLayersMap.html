@@ -14,7 +14,13 @@
         var routinoURL = "http://ksg.eti.pg.gda.pl/routino/www/routino/"
         var vectorLayer = null;
         var marker;
-
+        var line_style = {
+            strokeColor: "#f0f2ff",
+            strokeOpacity: 0.7,
+            strokeWidth: 4,
+            pointRadius: 6,
+            pointerEvents: "visiblePainted"
+        };
         function addMarker(location, text) {
             var feature = new OpenLayers.Feature(markers, location);
             feature.closeBox = true;
@@ -94,7 +100,8 @@
                         OpenLayers.Format.GPX()
                     }),
                     strategies: [new OpenLayers.Strategy.Fixed()],
-                    projection: map.displayProjection
+                    projection: map.displayProjection,
+                    style: line_style,
                 }
             );
             map.addLayer(vectorLayer);
@@ -139,10 +146,7 @@
             map.addControl(new OpenLayers.Control.LayerSwitcher());
             map.addControl(new OpenLayers.Control.MousePosition());
 
-            map.setCenter(new OpenLayers.LonLat(10.2, 48.9).transform(
-                geographic, mercator), 5);
-
-            // addMarker(new OpenLayers.LonLat(20, 50).transform(geographic, mercator), "Jestem Markerem.");
+            map.setCenter(new OpenLayers.LonLat(10.2, 48.9).transform(geographic, mercator), 5);
 
             var click = new OpenLayers.Control.Click();
             map.addControl(click);
