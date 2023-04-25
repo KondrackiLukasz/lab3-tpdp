@@ -13,6 +13,7 @@
         var numClicks = 0;
         var routinoURL = "http://ksg.eti.pg.gda.pl/routino/www/routino/"
         var vectorLayer = null;
+        var marker;
 
         function addMarker(location, text) {
             var feature = new OpenLayers.Feature(markers, location);
@@ -21,7 +22,7 @@
             feature.data.popupContentHTML = text;
             feature.data.overflow = "auto";
 
-            var marker = feature.createMarker();
+            marker = feature.createMarker();
 
             var markerClick = function (evt) {
                 if (this.popup == null) {
@@ -37,6 +38,7 @@
             marker.events.register("mousedown", feature, markerClick);
 
             markers.addMarker(marker);
+
         }
 
         OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
