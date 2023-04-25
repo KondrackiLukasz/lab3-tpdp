@@ -93,6 +93,7 @@
 
         function getRoutePolyline(result) {
             var url = routinoURL + "results.cgi?uuid=" + result + ";type=shortest;format=gpx-track";
+            if (vectorLayer !== null) map.removeLayer(vectorLayer);
             vectorLayer = new OpenLayers.Layer.Vector("Routes",
                 {
                     protocol: new OpenLayers.Protocol.HTTP({
